@@ -76,10 +76,10 @@ class OpenDaylightCollector(object):
 
     self._metrics_flow = {}
 
-    # Metric format odl_[metric_name]_[host_name]
+    # Metric format odl_[metric_name]{instance="exporter_node",job="opendaylight",node_label="hostname_openflowid"}
     # metric_name eg: packet_count, bytes_received
-    # host_name eg: opendaylight, compute, control, neutron
-    # Example metric: odl_packet_count_compute
+    # host_name eg: odl, compute, control, neutron
+    # Example metric: odl_active_flows{instance="160.85.4.121:9118",job="opendaylight",node_label="odl_openflow_1"}
 
     self._metrics_host = {
     'byte-count':
@@ -89,16 +89,16 @@ class OpenDaylightCollector(object):
     GaugeMetricFamily('odl_flow_count',
         'OpenDaylight flow count per node', labels=["node_label"]),
     'packet-count':
-    GaugeMetricFamily('odl_packet_count_',
+    GaugeMetricFamily('odl_packet_count',
         'OpenDaylight packet count per node', labels=["node_label"]),
     'active-flows':
-    GaugeMetricFamily('odl_active_flows_',
+    GaugeMetricFamily('odl_active_flows',
         'OpenDaylight active flows per node', labels=["node_label"]),
     'packets-lookedup':
-    GaugeMetricFamily('odl_packets_looked_up_',
+    GaugeMetricFamily('odl_packets_looked_up',
         'OpenDaylight packets lookedup per node', labels=["node_label"]),
     'packets-matched':
-    GaugeMetricFamily('odl_packets_matched_',
+    GaugeMetricFamily('odl_packets_matched',
         'OpenDaylight packets matched per node', labels=["node_label"])
     }
 
